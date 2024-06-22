@@ -1,0 +1,23 @@
+{
+    "users":[
+        {
+            "id":1,
+            "name":"Ashreen",
+            "age":20,
+            "clg":"vnr",
+            "email":"ashreen954@gmail.com",
+            "nn"
+        },
+        {
+            "id":2,
+            "name":"Rahul",
+            "age":56,
+            "email":"ahgsh@gmail.com"
+        }
+    ],
+
+    "student_details":[
+
+    ]
+
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Basic styling */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; 
+      width: 100%; 
+      align-items: center;
+      margin-top: -100px;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 0 10px;
+      cursor: pointer;
+      transition: transform 0.3s;
+      height: 250px;
+      width: 250px;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 150px;
+      height: 150px;
+      margin-bottom: 10px;
+      border-radius: 50%;
+    }
+    .card p {
+      margin: 0;
+      font-family:'Times New Roman', Times, serif;
+      font-size: large;
+    }
+    .card-text {
+      margin-top: auto; /* Move the text to the bottom */
+    }
+    .navbar {
+      background-color: #4892dc;
+      padding: 10px 20px;
+      text-align: center;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    footer {
+      background-color: #f8f9fa;
+      padding: 20px;
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      .container {
+        margin-top: 0;
+      }
+      .card {
+        margin: 20px auto;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="navbar">
+      <h1>Navsanjeevan</h1>
+    </div>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-12">
+          <div class="card" onclick="goToLogin('user')">
+            <img src="https://cdn-icons-png.freepik.com/256/4140/4140037.png?semt=ais_hybrid" alt="User">
+            <div class="card-text">
+              <p>User</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+          <div class="card" onclick="goToLogin('admin')">
+            <img src="https://pnghq.com/wp-content/uploads/admin-profile-vector-png-photos-964.png" alt="Admin">
+            <div class="card-text">
+              <p>Admin</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+        <p>&copy; 2024 Navsanjeevan. All rights reserved.</p>
+    </footer>    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+    <script>
+      function goToLogin(option) {
+        if (option === 'user') {
+          window.location.href = "userlogin.html";
+        } else if (option === 'admin') {
+          window.location.href = "admin_login.html";
+        }
+      }
+    </script>
+  </body>
+  </html>
+  
