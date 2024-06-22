@@ -1,0 +1,30 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000000;
+    color: white;
+    padding: 10px 10px;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+  
+  .navLinks {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .navLinks li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .navLinks li a:hover {
+    color: #f8f9fa; /* Lighter grey for hover */
+  }
+  

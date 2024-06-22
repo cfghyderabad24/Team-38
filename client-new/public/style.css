@@ -1,0 +1,45 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgb(59, 58, 58);
+    color: #fff;
+}
+
+.left-container {
+    flex: 1;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+}
+
+.right-container {
+    display: flex;
+}
+
+.nav-link {
+    margin-left: 1rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: #ddd;
+    text-decoration: underline;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.footer {
+    background-color: rgb(59, 58, 58);
+    padding: 10px;
+    text-align: center;
+    margin-top: auto;
+    color: aliceblue;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
