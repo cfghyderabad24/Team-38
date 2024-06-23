@@ -5,13 +5,15 @@ class StudentSerializer(serializers.Serializer):
     email = serializers.EmailField()
     state = serializers.ChoiceField(choices=[('accept', 'Accept'), ('reject', 'Reject')])
 
+class SubscriberSerializer(serializers.Serializer):
+    email = serializers.EmailField()
+
 class RoomSerializer(serializers.Serializer):
     room_id = serializers.IntegerField()
     room_name = serializers.CharField(max_length=255)
-    subscribers = serializers.ListField(child=serializers.EmailField())
+    subscribers = SubscriberSerializer(many=True)
 
-# Additional serializers if needed
-class FormSubmissionSerializer(serializers.Serializer):
+class FormSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=255)
     gender = serializers.CharField(max_length=10)
     percentage_12th = serializers.FloatField()

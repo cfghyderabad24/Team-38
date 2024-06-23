@@ -25,7 +25,7 @@ INSTALLED_APPS = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
+    "http://localhost:3001",
 ]
 
 MIDDLEWARE = [
@@ -98,16 +98,16 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'hritiktemporary@gmail.com'
-EMAIL_HOST_PASSWORD = 'zvtg ircr irdy pxxk'
 
 # MongoDB settings for pymongo usage
 MONGODB_URI = 'mongodb://localhost:27017'
 MONGODB_DB = 'student_db'
 MONGODB_COLLECTION = 'students'
+MONGODB_COLLECTION_ROOMS = 'rooms_data'
 
 # MongoDB settings for form submission
 
 MONGODB_COLLECTION_NGO = 'form_ngo'
 
 MONGODB_COLLECTION_VOLUNTEER = 'form_volunteer'
+MONGODB_COLLECTION_TRUSTEE = 'form_trustee'

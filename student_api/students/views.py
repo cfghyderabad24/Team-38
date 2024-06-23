@@ -91,7 +91,7 @@ class NotifyRoomSubscribersAPIView(APIView):
     def post(self, request, room_id):
         try:
             client = MongoClient(settings.MONGODB_URI)
-            db = client[settings.MONGODB_DB_ROOMS]
+            db = client["rooms_db"]
             collection = db[settings.MONGODB_COLLECTION_ROOMS]
 
             room = collection.find_one({"room_id": room_id})
@@ -135,6 +135,7 @@ class FormSubmissionAPIView(APIView):
             "current_occupation": data.get("current_occupation"),
             "state": "Accepted",
             "date_accepted": current_datetime,
+            "date_accepted_volunteer": current_datetime,
             "ssid": ssid
         }
 
@@ -151,7 +152,8 @@ class FormSubmissionAPIView(APIView):
             "current_occupation": data.get("current_occupation"),
             "state": "Pending",
             "date_accepted_ngo": current_datetime,
-            "ssid": ssid
+            "ssid": ssid,
+            "date_accepted_volunteer": current_datetime
         }
 
         try:
@@ -168,3 +170,39 @@ class FormSubmissionAPIView(APIView):
 
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class UpdateVolunteerStateAPIView(APIView):
+    def post(self, request):
+        data = request.data
+        ssid = data.get('ssid')
+        state = data.get('state')
+        current_datetime = datetime.datetime.now()
+
+        if state != 'accept':
+            return Response({'error': 'Invalid state. Only "accept" is allowed.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        client = MongoClient(settings.MONGODB_URI)
+        db = client[settings.MONGODB_DB]
+        collection_volunteer = db[settings.MONGODB_COLLECTION_VOLUNTEER]
+        collection_trustee = db[settings.MONGODB_COLLECTION_TRUSTEE]
+
+        # Update form_volunteer
+        result = collection_volunteer.find_one_and_update(
+            {'ssid': ssid},
+            {'$set': {'state': 'Accepted', 'date_accepted_volunteer': current_datetime}},
+            return_document=True
+        )
+
+        if not result:
+            return Response({'error': 'Document not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        # Prepare data for form_trustee
+        form_trustee_data = result.copy()
+        form_trustee_data.pop('_id')  # Remove _id to avoid duplicate key error
+        form_trustee_data['state'] = 'Pending'
+        form_trustee_data['date_accepted_ngo'] = form_trustee_data.pop('date_accepted_volunteer', current_datetime)
+
+        # Insert into form_trustee
+        collection_trustee.insert_one(form_trustee_data)
+
+        return Response({'message': 'State updated and data pushed to form_trustee successfully'}, status=status.HTTP_200_OK)
